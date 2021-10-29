@@ -1,0 +1,13 @@
+C:\Users\babar_ahmed\source\repos\RainbowFacultyManagement\RainbowFacultyManagement\bin\Debug\netcoreapp3.0\RainbowFacultyManagement.exe
+C:\Users\babar_ahmed\source\repos\RainbowFacultyManagement\RainbowFacultyManagement\bin\Debug\netcoreapp3.0\RainbowFacultyManagement.deps.json
+C:\Users\babar_ahmed\source\repos\RainbowFacultyManagement\RainbowFacultyManagement\bin\Debug\netcoreapp3.0\RainbowFacultyManagement.runtimeconfig.json
+C:\Users\babar_ahmed\source\repos\RainbowFacultyManagement\RainbowFacultyManagement\bin\Debug\netcoreapp3.0\RainbowFacultyManagement.runtimeconfig.dev.json
+C:\Users\babar_ahmed\source\repos\RainbowFacultyManagement\RainbowFacultyManagement\bin\Debug\netcoreapp3.0\RainbowFacultyManagement.dll
+C:\Users\babar_ahmed\source\repos\RainbowFacultyManagement\RainbowFacultyManagement\bin\Debug\netcoreapp3.0\RainbowFacultyManagement.pdb
+C:\Users\babar_ahmed\source\repos\RainbowFacultyManagement\RainbowFacultyManagement\obj\Debug\netcoreapp3.0\RainbowFacultyManagement.csprojAssemblyReference.cache
+C:\Users\babar_ahmed\source\repos\RainbowFacultyManagement\RainbowFacultyManagement\obj\Debug\netcoreapp3.0\RainbowFacultyManagement.AssemblyInfoInputs.cache
+C:\Users\babar_ahmed\source\repos\RainbowFacultyManagement\RainbowFacultyManagement\obj\Debug\netcoreapp3.0\RainbowFacultyManagement.AssemblyInfo.cs
+C:\Users\babar_ahmed\source\repos\RainbowFacultyManagement\RainbowFacultyManagement\obj\Debug\netcoreapp3.0\RainbowFacultyManagement.dll
+C:\Users\babar_ahmed\source\repos\RainbowFacultyManagement\RainbowFacultyManagement\obj\Debug\netcoreapp3.0\RainbowFacultyManagement.pdb
+C:\Users\babar_ahmed\source\repos\RainbowFacultyManagement\RainbowFacultyManagement\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+C:\Users\babar_ahmed\source\repos\RainbowFacultyManagement\RainbowFacultyManagement\obj\Debug\netcoreapp3.0\RainbowFacultyManagement.csproj.CopyComplete
