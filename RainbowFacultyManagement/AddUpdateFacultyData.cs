@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.Json;
 
 namespace RainbowFacultyManagement
 {
@@ -14,108 +11,166 @@ namespace RainbowFacultyManagement
         public string filePath = @"C:\\FSD Program\\Faculty_data.txt";
         public void DisplayAllRecords()
         {
-            
-            // Read existing json data
-            var jsonData = System.IO.File.ReadAllText(filePath);
-            var facultyList = JsonConvert.DeserializeObject<List<Data>>(jsonData);
-            foreach (var item in facultyList)
-            {
-                Console.WriteLine("**********************************************");
-                Console.WriteLine("Faculty Id : "+item.facultyId);
-                Console.WriteLine("\nFaculty Name : "+item.facultyName);
-                Console.WriteLine("\nFaculty Class : "+item.facultyClass);
-                Console.WriteLine("**********************************************");
-            }
-            Console.ReadKey();
-        }
 
-        public void DisplayRecordByFacultyId()
-        {
-            Console.WriteLine("Enter Faculty ID : ");
-            var facultyId = Convert.ToInt32(Console.ReadLine());
-            
-            // Read existing json data
-            var jsonData = System.IO.File.ReadAllText(filePath);
-            var facultyList = JsonConvert.DeserializeObject<List<Data>>(jsonData);
-            foreach (var item in facultyList)
+            try
             {
-                if(item.facultyId == facultyId)
+                // Read existing json data
+                var jsonData = System.IO.File.ReadAllText(filePath);
+                var facultyList = JsonConvert.DeserializeObject<List<Data>>(jsonData);
+                foreach (var item in facultyList)
                 {
                     Console.WriteLine("**********************************************");
                     Console.WriteLine("Faculty Id : " + item.facultyId);
                     Console.WriteLine("\nFaculty Name : " + item.facultyName);
                     Console.WriteLine("\nFaculty Class : " + item.facultyClass);
                     Console.WriteLine("**********************************************");
-                    break;
                 }
+                Console.ReadKey();
             }
-            Console.ReadKey();
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void DisplayRecordByFacultyId()
+        {
+            try
+            {
+                Console.WriteLine("Enter Faculty ID : ");
+                var facultyId = Convert.ToInt32(Console.ReadLine());
+                bool flag = true;
+                // Read existing json data
+                var jsonData = System.IO.File.ReadAllText(filePath);
+                var facultyList = JsonConvert.DeserializeObject<List<Data>>(jsonData);
+                foreach (var item in facultyList)
+                {
+                    if (item.facultyId == facultyId)
+                    {
+                        Console.WriteLine("**********************************************");
+                        Console.WriteLine("Faculty Id : " + item.facultyId);
+                        Console.WriteLine("\nFaculty Name : " + item.facultyName);
+                        Console.WriteLine("\nFaculty Class : " + item.facultyClass);
+                        Console.WriteLine("**********************************************");
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag)
+                {
+                    Console.WriteLine("Faculty not found. Please try again.");
+                    DisplayRecordByFacultyId();
+                }
+                Console.ReadKey();
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public void AddRecords()
         {
-            Console.WriteLine("Enter Faculty ID : ");
-            var FacultyId = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("\nEnter Faculty Name : ");
-            var FacultyName = Console.ReadLine();
-            Console.WriteLine("\nEnter Faculty Class : ");
-            var FacultyClass = Console.ReadLine();
-            
-            // Read existing json data
-            var jsonData = System.IO.File.ReadAllText(filePath);
-            // De-serialize to object or create new list
-            var facultyList = JsonConvert.DeserializeObject<List<Data>>(jsonData)
-                                  ?? new List<Data>();
-
-            // Add any new employees
-            facultyList.Add(new Data()
+            try
             {
-                facultyId = FacultyId,
-                facultyName = FacultyName,
-                facultyClass = FacultyClass
-            });
+                bool flag = true;
+                Console.WriteLine("Enter Faculty ID : ");
+                var FacultyId = Convert.ToInt32(Console.ReadLine());
+                // Read existing json data
+                var jsonData = System.IO.File.ReadAllText(filePath);
+                // De-serialize to object or create new list
+                var facultyList = JsonConvert.DeserializeObject<List<Data>>(jsonData)
+                                      ?? new List<Data>();
 
-            // Update json data string
-            jsonData = JsonConvert.SerializeObject(facultyList);
-            System.IO.File.WriteAllText(filePath, jsonData);
-            Console.WriteLine("Faculty record created successfully!");
-            Console.ReadKey();
+                if (FacultyId > 0)
+                {
+                    foreach (var item in facultyList)
+                    {
+
+                        if (item.facultyId == FacultyId)
+                        {
+                            Console.WriteLine("Faculty ID exists in records. Please enter a new faculty ID");
+                            AddRecords();
+                            flag = false;
+                        }
+                    }
+                    if (flag)
+                    {
+                        Console.WriteLine("\nEnter Faculty Name : ");
+                        var FacultyName = Console.ReadLine();
+                        Console.WriteLine("\nEnter Faculty Class : ");
+                        var FacultyClass = Console.ReadLine();
+                        // Add any new faculty
+                        facultyList.Add(new Data()
+                        {
+                            facultyId = FacultyId,
+                            facultyName = FacultyName,
+                            facultyClass = FacultyClass
+                        });
+                        // Update json data string
+                        jsonData = JsonConvert.SerializeObject(facultyList);
+                        System.IO.File.WriteAllText(filePath, jsonData);
+                        Console.WriteLine("Faculty record created successfully!");
+                        Console.ReadKey();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public void UpdateRecords()
         {
-            
-            // Read existing json data
-            var jsonData = System.IO.File.ReadAllText(filePath);
-            var facultyList = JsonConvert.DeserializeObject<List<Data>>(jsonData);
-            Console.Write("Enter Faculty ID to Update faculty : ");
-            var facultyId = Convert.ToInt32(Console.ReadLine());
-            if (facultyId > 0)
+            try
             {
-                Console.Write("Enter new Faculty name : ");
-                var facultyName = Convert.ToString(Console.ReadLine());
-                Console.Write("Enter new Faculty class : ");
-                var facultyClass = Convert.ToString(Console.ReadLine());
-
-
-                foreach (var item in facultyList)
+                bool flag = true;
+                // Read existing json data
+                var jsonData = System.IO.File.ReadAllText(filePath);
+                var facultyList = JsonConvert.DeserializeObject<List<Data>>(jsonData);
+                Console.Write("Enter Faculty ID to Update faculty : ");
+                var facultyId = Convert.ToInt32(Console.ReadLine());
+                if (facultyId > 0)
                 {
-
-                    if(item.facultyId == facultyId)
+                    foreach (var item in facultyList)
                     {
-                        item.facultyName = !string.IsNullOrEmpty(facultyName) ? facultyName : "";
-                        item.facultyClass = !string.IsNullOrEmpty(facultyClass) ? facultyClass : "";
-                        break;
+
+                        if (item.facultyId == facultyId)
+                        {
+                            Console.Write("Enter new Faculty name : ");
+                            var facultyName = Convert.ToString(Console.ReadLine());
+                            Console.Write("Enter new Faculty class : ");
+                            var facultyClass = Convert.ToString(Console.ReadLine());
+                            item.facultyName = !string.IsNullOrEmpty(facultyName) ? facultyName : "";
+                            item.facultyClass = !string.IsNullOrEmpty(facultyClass) ? facultyClass : "";
+                            flag = false;
+                            break;
+                        }
+
                     }
-                                        
+                    if (flag)
+                    {
+                        Console.WriteLine("Faculty not found. Please try again");
+                        UpdateRecords();
+                    }
+
+                    jsonData = JsonConvert.SerializeObject(facultyList);
+                    System.IO.File.WriteAllText(filePath, jsonData);
+                    Console.WriteLine("Faculty record updated successfully!");
+                    Console.ReadKey();
                 }
-                jsonData = JsonConvert.SerializeObject(facultyList);
-                System.IO.File.WriteAllText(filePath, jsonData);
-                Console.WriteLine("Faculty record updated successfully!");
-                Console.ReadKey();
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
             }
         }
-        
+       
     }
 }
 
